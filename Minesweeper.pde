@@ -72,10 +72,53 @@ public class MSButton {
         }
         // called by manager
 
-    public void mousePressed() {
-        clicked = true;
-        //your code here
+     public void mousePressed () 
+    {
+        if(mouseButton == LEFT)
+        {
+            if(clicked == false)
+            {
+                clicked = true;
+                if(keyPressed == true)
+                {
+                    marked = !marked;
+                }
+                else if(bombs.contains(this))
+                {
+                    displayLosingMessage();
+                }
+                else if(countBombs(r,c)>0)
+                {
+                    label = label + countBombs(r,c);
+//                    println("label");
+                }
+                else
+                {
+                    for(int i=-1;i<2;i++)
+                    {
+                        for(int j=-1;j<2;j++)
+                        {
+                            if(isValid(r+i,c+j)==true)
+                            {
+                                if(buttons[r+i][c+j].isClicked()==false)
+                                {
+                                    buttons[r+i][c+j].mousePressed();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if(mouseButton==RIGHT)
+        {
+            if(clicked == false)
+            {
+                marked=!marked;
+            }
+        }
     }
+
 
     public void draw() {
         if (marked)
@@ -100,16 +143,22 @@ public class MSButton {
         }
         return false;
     }
-    public int countBombs(int row, int col) {
+     public int countBombs(int row, int col)
+    {
         int numBombs = 0;
-        for(int row = 0; row < 20; row++)
+        for(int i=-1;i<2;i++)
         {
-            for(int col = 0; col < 20; col++)
+            for(int j=-1;j<2;j++)
             {
-                
+                if(isValid(row+i,col+j)==true)
+                {
+                    if(bombs.contains(buttons[row+i][col+j]))
+                    {
+                        numBombs++;
+                    }
+                }
             }
         }
-
         return numBombs;
     }
 }
