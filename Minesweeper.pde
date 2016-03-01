@@ -1,8 +1,8 @@
 import de.bezier.guido.*;
 //Declare and initialize NUM_ROWS and NUM_COLS = 20
-private final static int NUM_ROWS = 20;
-private final static int NUM_COLS = 20;
-private final static int NUM_BOMBS = 30;
+public final static int NUM_ROWS = 20;
+public final static int NUM_COLS = 20;
+public final static int NUM_BOMBS = 30;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList < MSButton > bombs = new ArrayList < MSButton > (); //ArrayList of just the minesweeper buttons that are mined
 
@@ -23,8 +23,8 @@ void setup() {
 }
 public void setBombs() {
     for (int i = 0; i < NUM_BOMBS; i++) {
-        int aRow = (int)(Math.random() * 20);
-        int aCol = (int)(Math.random() * 20);
+        int aRow = (int)(Math.random() * NUM_ROWS);
+        int aCol = (int)(Math.random() * NUM_COLS);
         if (!bombs.contains(buttons[aRow][aCol])) {
             bombs.add(buttons[aRow][aCol]);
         }
@@ -36,15 +36,50 @@ public void draw() {
     if (isWon())
         displayWinningMessage();
 }
-public boolean isWon() {
-    //your code here
+public boolean isWon()
+{
+    int markBombs= 0;
+    for(int i = 0; i < bombs.size(); i++)
+    {
+        if(bombs.get(i).isMarked() == true)
+        {
+            markBombs++;
+        }
+    }
+    if(markBombs == bombs.size())
+    {
+        return true;
+    }
+    for(int i = 0;i < bombs.size(); i++)
+    {
+        if(bombs.get(i).isClicked() == true)
+        {
+            displayLosingMessage();
+        }
+    }
     return false;
 }
 public void displayLosingMessage() {
     //your code here
+    buttons[10][8].setLabel("N");
+    buttons[10][9].setLabel("I");
+    buttons[10][10].setLabel("C");
+    buttons[10][11].setLabel("E");
+    buttons[11][8].setLabel("T");
+    buttons[11][9].setLabel("R");
+    buttons[11][10].setLabel("Y");
+    //if(bombs.contains(buttons[r][c]))
+       // buttons[r][c].isClicked();
 }
 public void displayWinningMessage() {
     //your code here
+    buttons[10][8].setLabel("Y");
+    buttons[10][9].setLabel("O");
+    buttons[10][10].setLabel("U");
+    buttons[11][8].setLabel("W");
+    buttons[11][9].setLabel("I");
+    buttons[11][10].setLabel("N");
+    buttons[11][11].setLabel("!");
 }
 
 public class MSButton {
@@ -138,7 +173,7 @@ public class MSButton {
         label = newLabel;
     }
     public boolean isValid(int r, int c) {
-        if ((r > -1 && r < 20) && (c > -1 && c < 20)) {
+        if ((r > -1 && r < NUM_ROWS) && (c > -1 && c < NUM_COLS)) {
             return true;
         }
         return false;
