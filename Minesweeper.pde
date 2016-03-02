@@ -61,6 +61,10 @@ public boolean isWon()
 }
 public void displayLosingMessage() {
     //your code here
+    /* for(int i=0;i<bombs.size();i++)
+    {
+        bombs.get(i).setClicked(true);
+    }*/
     buttons[10][8].setLabel("N");
     buttons[10][9].setLabel("I");
     buttons[10][10].setLabel("C");
@@ -68,8 +72,7 @@ public void displayLosingMessage() {
     buttons[11][8].setLabel("T");
     buttons[11][9].setLabel("R");
     buttons[11][10].setLabel("Y");
-    //if(bombs.contains(buttons[r][c]))
-       // buttons[r][c].isClicked();
+    
 }
 public void displayWinningMessage() {
     //your code here

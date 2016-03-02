@@ -1,9 +1,8 @@
 body {
-    background-color: rgb(200,200,200);
-    color: rgb(0,0,0);
-    font-family: "Open Sans", sans-serif;
+    background-color: rgb(255,255,255);
+    color: rgb(45, 134, 45);
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
     text-align: center;
-}
 
 #content {
     display: block;
