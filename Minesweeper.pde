@@ -2,7 +2,7 @@ import de.bezier.guido.*;
 //Declare and initialize NUM_ROWS and NUM_COLS = 20
 public final static int NUM_ROWS = 20;
 public final static int NUM_COLS = 20;
-public final static int NUM_BOMBS = 30;
+public final static int NUM_BOMBS = 20;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList < MSButton > bombs = new ArrayList < MSButton > (); //ArrayList of just the minesweeper buttons that are mined
 
@@ -61,10 +61,10 @@ public boolean isWon()
 }
 public void displayLosingMessage() {
     //your code here
-    /* for(int i=0;i<bombs.size();i++)
+     for(int i=0;i<bombs.size();i++)
     {
         bombs.get(i).setClicked(true);
-    }*/
+    }
     buttons[10][8].setLabel("N");
     buttons[10][9].setLabel("I");
     buttons[10][10].setLabel("C");
@@ -72,6 +72,7 @@ public void displayLosingMessage() {
     buttons[11][8].setLabel("T");
     buttons[11][9].setLabel("R");
     buttons[11][10].setLabel("Y");
+    buttons[11][11].setLabel("!");
     
 }
 public void displayWinningMessage() {
@@ -109,6 +110,10 @@ public class MSButton {
             return clicked;
         }
         // called by manager
+    public void setClicked(boolean cClicked)
+    {
+        clicked = cClicked;
+    }
 
      public void mousePressed () 
     {
